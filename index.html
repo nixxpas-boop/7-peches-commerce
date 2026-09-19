@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Septem — Les 7 Péchés Capitaux | V14</title>
+<title>Septem — Les 7 Péchés Capitaux | V15</title>
 <meta name="theme-color" content="#09090b">
 <style>
 :root{--bg:#070709;--panel:#101014;--ink:#f0e6d6;--muted:#b7aa98;--red:#d30e26;--red2:#ff3048;--line:#4b2229;--shadow:rgba(0,0,0,.78)}
@@ -142,6 +142,14 @@ table{width:100%;border-collapse:collapse}th,td{padding:8px 6px;border-bottom:1p
 <footer class="footer">« Tout désir possède un prix. »<br><span class="badge">LES 7 PÉCHÉS CAPITAUX</span><span class="badge">𝘚𝘦𝘱𝘵𝘦𝘮</span><span class="badge">FORCE • ÉCHANGE • AMBITION</span></footer>
 </div></div></div>
 
+
+/* V15 — sécurité d'affichage : les effets décoratifs ne peuvent jamais masquer l'interface */
+.mist-field,.mist,.ember-field{display:none!important}
+.shell{position:relative!important;z-index:10!important;display:block!important;visibility:visible!important;opacity:1!important}
+.parchment{position:relative!important;z-index:11!important;display:block!important;visibility:visible!important;opacity:1!important}
+.content{position:relative!important;z-index:12!important;display:block!important;visibility:visible!important;opacity:1!important}
+.header,.tabs,.panel,.card,.footer{visibility:visible!important;opacity:1!important}
+.panel.active{display:block!important}
 </style>
 <script>
 const MARGIN=0.20;
@@ -306,6 +314,7 @@ function addRow(){const wrap=document.getElementById("exchangeRows"),row=documen
 function exchange(){let total=0;document.querySelectorAll("#exchangeRows .row").forEach(r=>total+=(+r.querySelector(".exres").value)*Math.max(1,+r.querySelector(".exqty").value||1));document.getElementById("exchangeTotal").textContent=fmt(total)}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})});
 function safeRun(fn){try{fn()}catch(err){console.error("Commerce init:",err)}}
+function emergencyDisplay(){document.documentElement.style.visibility="visible";document.body.style.visibility="visible";document.body.style.opacity="1";document.querySelectorAll(".shell,.parchment,.content,.header,.tabs,.panel.active,.card,.footer").forEach(e=>{e.style.visibility="visible";e.style.opacity="1"})}
 function initCommerce(){
   safeRun(renderTiers);
   safeRun(renderLists);
@@ -319,6 +328,7 @@ function initCommerce(){
   if(ar)ar.onclick=()=>safeRun(addRow);if(ae)ae.onclick=()=>safeRun(addOrderEquipRow);if(ag)ag.onclick=()=>safeRun(addOrderGemRow);if(ai)ai.onclick=()=>safeRun(addInlayRow);
   safeRun(()=>{if(!document.querySelector("#inlayRows .order-inlay-row"))addInlayRow()});
   safeRun(calcInlay);safeRun(calcFull);
+  emergencyDisplay();
 }
 function addExtraEmbers(){
   const field=document.createElement("div");field.className="ember-field extra";field.setAttribute("aria-hidden","true");
