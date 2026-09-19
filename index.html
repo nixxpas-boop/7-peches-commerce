@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Septem — Les 7 Péchés Capitaux | V15</title>
+<title>Septem — Les 7 Péchés Capitaux | V17</title>
 <meta name="theme-color" content="#09090b">
 <style>
 :root{--bg:#070709;--panel:#101014;--ink:#f0e6d6;--muted:#b7aa98;--red:#d30e26;--red2:#ff3048;--line:#4b2229;--shadow:rgba(0,0,0,.78)}
@@ -72,13 +72,37 @@ table{width:100%;border-collapse:collapse}th,td{padding:8px 6px;border-bottom:1p
 .ember-field i:nth-child(1){left:8%;bottom:-10px;animation-delay:0s}.ember-field i:nth-child(2){left:19%;bottom:-20px;animation-delay:2.1s}.ember-field i:nth-child(3){left:34%;bottom:-15px;animation-delay:4.2s}.ember-field i:nth-child(4){left:62%;bottom:-10px;animation-delay:1.2s}.ember-field i:nth-child(5){left:79%;bottom:-25px;animation-delay:3.4s}.ember-field i:nth-child(6){left:92%;bottom:-15px;animation-delay:5.1s}
 @keyframes ember{0%{transform:translateY(0) scale(.6);opacity:0}12%{opacity:.8}55%{opacity:.55}100%{transform:translateY(-110vh) translateX(30px) scale(1.15);opacity:0}}
 
-/* V15 — sécurité d'affichage : les effets décoratifs ne peuvent jamais masquer l'interface */
-.mist-field,.mist,.ember-field{display:none!important}
-.shell{position:relative!important;z-index:10!important;display:block!important;visibility:visible!important;opacity:1!important}
-.parchment{position:relative!important;z-index:11!important;display:block!important;visibility:visible!important;opacity:1!important}
-.content{position:relative!important;z-index:12!important;display:block!important;visibility:visible!important;opacity:1!important}
-.header,.tabs,.panel,.card,.footer{visibility:visible!important;opacity:1!important}
-.panel.active{display:block!important}
+/* V17 — effets visuels réactivés sans pouvoir bloquer l'interface */
+.mist-field,.mist,.ember-field{pointer-events:none}
+.mist-field,.mist{z-index:0!important}
+.ember-field{z-index:1!important}
+.shell{position:relative;z-index:2!important}
+.parchment{position:relative;z-index:3!important}
+.content{position:relative;z-index:4!important}
+.header,.tabs,.panel,.card,.footer{visibility:visible;opacity:1}
+.panel.active{display:block}
+
+/* V17 — case à cocher compacte */
+.provision input[type="checkbox"]{
+  width:18px!important;height:18px!important;min-width:18px!important;min-height:18px!important;
+  padding:0!important;margin:0!important;flex:0 0 18px!important;
+  appearance:auto;accent-color:var(--red);cursor:pointer;
+}
+.provision{gap:9px}
+
+/* V17 — titre SEPTEM en dégradé rouge/noir */
+h1{
+  background:linear-gradient(180deg,#ff4357 0%,#d30e26 42%,#6e0b18 72%,#171014 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 2px 0 rgba(0,0,0,.7),0 0 18px rgba(210,14,38,.18);
+  filter:drop-shadow(0 0 8px rgba(210,14,38,.12));
+}
+
+/* V17 — brume latérale plus visible et élégante */
+.mist-field:before,.mist-field:after{opacity:.82!important;filter:blur(32px)!important}
+.mist:before,.mist:after{opacity:.9!important;filter:blur(12px)}
+.ember-field i,.ember{box-shadow:0 0 9px rgba(255,48,72,.8)}
 </style>
 </head>
 <body><div class="mist-field" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="ember-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
