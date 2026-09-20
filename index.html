@@ -17,10 +17,13 @@ body:after{content:"";position:fixed;inset:-10%;pointer-events:none;z-index:0;ba
 .logo{height:205px;max-width:min(250px,58vw);filter:drop-shadow(0 0 10px rgba(255,20,45,.35)) drop-shadow(0 0 24px rgba(120,0,20,.22))}.header:before{content:"";position:absolute;left:50%;top:0;width:260px;height:260px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(210,14,38,.12),transparent 68%);pointer-events:none;animation:headerPulse 5s ease-in-out infinite}@keyframes headerPulse{0%,100%{opacity:.45;transform:translateX(-50%) scale(.92)}50%{opacity:.9;transform:translateX(-50%) scale(1.08)}}
 .section-title{position:relative;overflow:hidden;margin-top:28px;margin-bottom:18px}.section-title:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,rgba(255,35,55,.08),transparent);transform:translateX(-120%);animation:sectionSweep 7s ease-in-out infinite}@keyframes sectionSweep{0%,65%{transform:translateX(-120%)}82%,100%{transform:translateX(120%)}}
 .row{position:relative;transition:transform .2s,box-shadow .2s}.row:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.28),0 0 15px rgba(210,14,38,.08)}
+.order-inlay-row{display:grid;grid-template-columns:minmax(260px,1.45fr) minmax(220px,1.25fr) minmax(90px,.55fr) minmax(150px,.75fr) auto;gap:10px;align-items:end;margin-bottom:10px;padding:10px;border:1px solid #3e272d;background:rgba(10,10,13,.55);transition:.2s}.order-inlay-row:hover{transform:translateY(-2px);border-color:#712532;box-shadow:0 8px 20px rgba(0,0,0,.24),0 0 14px rgba(210,14,38,.08)}.inlay-price{color:#ff5364!important;font-weight:bold;text-align:center}.contract-card{border:1px solid #4a252b;background:linear-gradient(180deg,#171519,#0e0e11);padding:18px;position:relative;overflow:hidden}.contract-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 0%,rgba(210,14,38,.12),transparent 32%);pointer-events:none}.contract-head{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid #40242b;padding-bottom:10px}.contract-status{font-size:11px;letter-spacing:1.2px;color:#ff9da8}.contract-mark{font-style:italic;color:#cdbb9c;letter-spacing:2px}.contract-card h3{margin:15px 0 8px;color:#f0dfbf}.contract-card p{position:relative;z-index:1}.contract-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.contract-fields div{padding:10px;border:1px solid #3b292e;background:#0b0b0e}.contract-fields span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#8f8171;margin-bottom:5px}.contract-fields b{font-size:12px;color:#e5d8c4}
+
 .provision{display:flex;margin-top:12px;align-items:center;gap:7px;padding:8px 10px;border:1px solid #402229;background:rgba(18,12,15,.72);color:#d8c8b4;font-size:12px;white-space:nowrap}.provision input{accent-color:#d30e26}.service-fee{width:120px!important}.service-fee-wrap{display:none;align-items:center;gap:6px;color:#c7b9a5;font-size:11px}.row.client-provided .service-fee-wrap{display:flex}.client-badge{display:inline-block;padding:3px 7px;border:1px solid #6b2630;background:rgba(120,8,24,.15);color:#ffb8bd;font-size:10px;letter-spacing:.5px;text-transform:uppercase}
 .provision-details{display:none;grid-column:1/-1;margin-top:6px;padding:9px 10px;border-left:2px solid var(--red);background:rgba(18,10,13,.72);border-top:1px solid #382027}.row.client-provided .provision-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px}.material-provision{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px;border:1px solid #3b272c;background:rgba(0,0,0,.22);font-size:11px;color:#d9c9b6}.material-provision input{width:58px!important;margin:0!important;padding:5px!important;text-align:center}.provision-summary{grid-column:1/-1;color:#bfae99;font-size:11px}.provision-summary b{color:#f0dfc7}.service-fee-wrap{flex-wrap:wrap}.resource-note{font-size:10px;color:#8f8171}
 
 @media(max-width:760px){.logo{height:205px;max-width:62vw}.provision{white-space:normal}.service-fee-wrap{flex-wrap:wrap}.service-fee{width:100%!important}}
+@media(max-width:760px){.nav-sep{display:none}.order-inlay-row{grid-template-columns:1fr}.inlay-labels{display:none}.contract-fields{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.mist,.ember-field,.header:before{animation:none!important}.logo,.section-title:after,.header:before{animation:none!important}}
 .parchment:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(circle at 50% 0%,rgba(255,40,60,.09),transparent 30%),radial-gradient(circle at 50% 100%,rgba(255,40,60,.045),transparent 28%);mix-blend-mode:screen}
 .header{position:relative;isolation:isolate}
@@ -39,6 +42,7 @@ h1{margin:2px 0 3px;text-transform:uppercase;letter-spacing:4px;font-size:38px;c
 .subtitle{font-style:italic;font-size:18px;color:#c7b9a5}.motto{display:inline-block;margin-top:12px;padding:8px 20px;border-top:1px solid var(--red);border-bottom:1px solid var(--red);color:#e2cb9c;letter-spacing:1px}
 .sins{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:2px auto 12px;color:#9e8e78;font-size:11px;letter-spacing:1px;text-transform:uppercase}.sins span:before{content:"◆";color:var(--red);margin-right:6px}
 .tabs{position:sticky;top:8px;z-index:10;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 24px;padding:9px;background:rgba(8,8,10,.82);backdrop-filter:blur(10px);border:1px solid #352027;box-shadow:0 12px 25px rgba(0,0,0,.25)}
+.nav-sep{width:1px;align-self:stretch;margin:2px 2px;background:linear-gradient(180deg,transparent,#7d1b29,transparent);box-shadow:0 0 8px rgba(210,14,38,.18)}
 .tab{border:1px solid #512028;background:#17171b;color:#e7dcc9;padding:11px 15px;cursor:pointer;font-family:inherit;font-weight:bold;text-transform:uppercase;letter-spacing:.55px;transition:.22s;position:relative;overflow:hidden}.tab:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,rgba(255,255,255,.12),transparent);transform:translateX(-120%);transition:.5s}.tab:hover:after{transform:translateX(120%)}.tab:hover,.tab.active{background:linear-gradient(180deg,#a50d20,#680a16);border-color:#e1263a;color:#fff4e1;box-shadow:0 0 18px rgba(210,14,38,.24);transform:translateY(-1px)}
 .panel{display:none;animation:panelIn .35s ease both}.panel.active{display:block}@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .card{border:1px solid #4a252b;background:linear-gradient(180deg,#151519,#101014);box-shadow:inset 0 0 35px rgba(0,0,0,.24);padding:20px;margin-bottom:18px}.card h2{margin:0 0 7px;color:#ead9bb;text-transform:uppercase;letter-spacing:1px}.card p{margin:7px 0 16px;color:#bfb19d}
@@ -168,9 +172,10 @@ h1{
 <button class="tab active" data-tab="ressources">📜 Ressources</button>
 <button class="tab" data-tab="equipements">⚒️ Équipements</button>
 <button class="tab" data-tab="gemmes">💎 Gemmes</button>
-<button class="tab" data-tab="incrustation">🔮 Incrustation</button>
+<span class="nav-sep" aria-hidden="true"></span>
 <button class="tab" data-tab="commande">🧾 Commande complète</button>
-<button class="tab" data-tab="echanges">🤝 Échanges</button>
+<span class="nav-sep" aria-hidden="true"></span>
+<button class="tab" data-tab="contrats">📜 Contrats</button>
 </nav>
 
 <section id="ressources" class="panel"><div class="card">
@@ -191,15 +196,6 @@ h1{
 <div class="notice">Les types et niveaux de gemmes sont séparés de l'incrustation afin que les deux calculs restent parfaitement lisibles.</div>
 </div></section>
 
-<section id="incrustation" class="panel"><div class="card">
-<h2>🔮 Incrustation — outil rapide</h2><p>Ajoutez plusieurs équipements si la commande en contient plusieurs. Toutes les gemmes sont compatibles avec les équipements et le Katana.</p>
-<div class="inlay-head"><span>Équipement / arme</span><span>Gemme</span><span>Nombre</span><span>Tarif / incrustation</span><span></span></div>
-<div id="inlayRows"></div>
-<button type="button" class="action secondary" id="addInlay" onclick="addInlayRow()">＋ Ajouter une incrustation</button>
-<div class="result">Prix total du service d'incrustation<div class="total" id="inlayTotal">0 Ryos</div></div>
-<div class="notice">Chaque ligne représente un équipement à incruster. Le tarif est modifiable ligne par ligne. Le Katana est disponible comme arme mais n'a pas de recette de craft.</div>
-</div></section>
-
 <section id="commande" class="panel"><div class="card">
 <h2>🧾 Commande complète</h2><p>Un seul récapitulatif, mais chaque service reste calculé séparément.</p>
 <div class="section-title">⚒️ 1. Fabrication des équipements</div>
@@ -208,15 +204,24 @@ h1{
 <button type="button" class="action secondary" id="addOrderEquip" onclick="addOrderEquipRow()">＋ Ajouter une fabrication</button>
 <div class="mini-card" id="orderEquipInfo"></div>
 <div class="section-title">💎 2. Création des gemmes</div><div class="notice"><b>Ressources fournies par le client :</b> même principe pour les gemmes. Vous pouvez fournir seulement certaines ressources ou toutes les ressources de la recette ; le prix des composants est alors réduit automatiquement.</div><div id="orderGemRows"></div><button type="button" class="action secondary" id="addOrderGem" onclick="addOrderGemRow()">＋ Ajouter une gemme</button>
-<div class="section-title">🔮 3. Incrustation</div><div class="notice">Outil intégré à la commande : si vous utilisez aussi l’onglet « Incrustation — outil rapide », il s’agit du même tarif, simplement présenté séparément pour les calculs hors commande.</div>
-<div class="form-grid"><div><label for="orderInlayPrice">Tarif par incrustation</label><input id="orderInlayPrice" type="number" min="0" value="0"></div><div><label for="orderInlayQty">Nombre de gemmes posées</label><input id="orderInlayQty" type="number" min="0" value="0"></div></div>
+<div class="section-title">🔮 3. Incrustation</div><div class="notice"><b>Tarif automatique :</b> <b>T1 — 5 000 Ryos</b> • <b>T2 — 15 000 Ryos</b> • <b>T3 — 35 000 Ryos</b> • <b>T4 — 80 000 Ryos</b>. Une ligne correspond à une incrustation sur un équipement.</div>
+<div class="row-labels inlay-labels"><span>Équipement / arme</span><span>Gemme</span><span>Nombre</span><span>Tarif / incrustation</span><span></span></div>
+<div id="orderInlayRows"></div>
+<button type="button" class="action secondary" id="addOrderInlay" onclick="addOrderInlayRow()">＋ Ajouter une incrustation</button>
+<div class="mini-card" id="orderInlayInfo"></div>
 <div class="result" style="margin-top:22px;text-align:left"><div class="mini-note">Récapitulatif</div><div id="fullBreakdown" style="line-height:1.9;margin-top:8px"></div><div style="border-top:1px solid #63313a;margin-top:12px;padding-top:12px;text-align:center">TOTAL FINAL<div class="total" id="fullTotal">0 Ryos</div></div></div>
 </div></section>
 
-<section id="echanges" class="panel"><div class="card">
-<h2>🤝 Échanges</h2><p>Ajoutez des ressources pour connaître leur valeur de référence.</p>
-<div id="exchangeRows"></div><button type="button" class="action secondary" id="addRow" onclick="addRow()">＋ Ajouter une ressource</button>
-<div class="result">Valeur totale<div class="total" id="exchangeTotal">0 Ryos</div></div>
+<section id="contrats" class="panel"><div class="card">
+<h2>📜 Contrats commerciaux</h2><p>Registre des accords conclus avec les villages, pays et groupes partenaires des 7 Péchés Capitaux.</p>
+<div class="notice"><b>🤝 Accords commerciaux :</b> cette section permet de regrouper les conventions de commerce, les tarifs négociés et les engagements convenus avec les différents partenaires.</div>
+<div class="contract-card">
+<div class="contract-head"><span class="contract-status">ACCORD COMMERCIAL</span><span class="contract-mark">SEPTEM</span></div>
+<h3>Registre des partenariats</h3>
+<p>Les contrats pourront être ajoutés ici avec leurs partenaires, leurs conditions, leurs avantages commerciaux et leurs éventuelles modalités de révision.</p>
+<div class="contract-fields"><div><span>Partenaire</span><b>À renseigner</b></div><div><span>Type d’accord</span><b>Commerce / Ressources</b></div><div><span>Conditions</span><b>À renseigner</b></div></div>
+</div>
+<div class="small-note" style="margin-top:12px">Les accords peuvent être modifiés ou renouvelés lors d’une nouvelle rencontre entre les parties concernées.</div>
 </div></section>
 
 <footer class="footer">« Tout désir possède un prix. »<br><span class="badge">LES 7 PÉCHÉS CAPITAUX</span><span class="badge">𝘚𝘦𝘱𝘵𝘦𝘮</span><span class="badge">FORCE • ÉCHANGE • AMBITION</span></footer>
@@ -285,25 +290,11 @@ function renderLists(){filters("equipFilters",["Tous","T1","T2","T3","T4","Arme"
 function equipOptions(){return equipment.map((x,i)=>`<option value="${i}">${esc(x[1])} — ${x[0]}</option>`).join("")}
 function gemOptions(){return '<option value="">Aucune</option>'+gems.map((g,i)=>`<option value="${i}">${esc(g.name)} — ${g.tier}</option>`).join("")}
 function fillSelectors(){}
-function addInlayRow(){
-  const wrap=document.getElementById("inlayRows"),row=document.createElement("div");
-  row.className="order-inlay-row";
-  row.innerHTML=`<select class="quickInlayEquip">${equipOptions()}</select><select class="quickInlayGem">${gemOptions()}</select><input class="quickInlayQty" type="number" min="1" value="1"><input class="quickInlayPrice" type="number" min="0" value="0" placeholder="À définir"><button type="button" class="action secondary removeInlay">×</button>`;
-  wrap.appendChild(row);
-  row.querySelector(".quickInlayQty").oninput=calcInlay;
-  row.querySelector(".quickInlayPrice").oninput=calcInlay;
-  row.querySelector(".removeInlay").onclick=()=>{row.remove();calcInlay()};
-  calcInlay();
-}
-function calcInlay(){
-  let total=0;
-  document.querySelectorAll("#inlayRows .order-inlay-row").forEach(r=>{
-    const q=Math.max(0,+r.querySelector(".quickInlayQty").value||0);
-    const p=Math.max(0,+r.querySelector(".quickInlayPrice").value||0);
-    total+=q*p;
-  });
-  const out=document.getElementById("inlayTotal");if(out)out.textContent=fmt(total);
-}
+const INLAY_TARIFFS={T1:5000,T2:15000,T3:35000,T4:80000};
+function getInlayTariff(equip){return equip?INLAY_TARIFFS[equip[0]]??null:null}
+function inlayEquipOptions(){return '<option value="">Choisir un équipement</option>'+equipment.map((x,i)=>`<option value="${i}">${esc(x[1])} — ${x[0]==="ARME"?"Arme":x[0]}</option>`).join("")}
+function addOrderInlayRow(){const wrap=document.getElementById("orderInlayRows");if(!wrap)return;const row=document.createElement("div");row.className="order-inlay-row";row.innerHTML=`<select class="orderInlayEquip">${inlayEquipOptions()}</select><select class="orderInlayGem">${gemOptions()}</select><input class="orderInlayQty" type="number" min="1" value="1"><input class="inlay-price" type="text" value="À définir" readonly><button type="button" class="action secondary removeOrderInlay">×</button>`;wrap.appendChild(row);const sel=row.querySelector(".orderInlayEquip"),price=row.querySelector(".inlay-price");function refreshTariff(){const equip=equipment[+sel.value],tariff=getInlayTariff(equip);price.value=tariff==null?"À définir":fmt(tariff);calcFull()}sel.onchange=refreshTariff;row.querySelector(".orderInlayQty").oninput=calcFull;row.querySelector(".removeOrderInlay").onclick=()=>{row.remove();calcFull()};calcFull()}
+function calcOrderInlays(){let total=0,unknown=false,lines=[];document.querySelectorAll("#orderInlayRows .order-inlay-row").forEach(r=>{const ev=r.querySelector(".orderInlayEquip")?.value;if(ev===""||ev==null)return;const equip=equipment[+ev],gem=r.querySelector(".orderInlayGem")?.value||"",q=Math.max(1,+r.querySelector(".orderInlayQty")?.value||1),p=getInlayTariff(equip);if(p==null){unknown=true;lines.push(`🔮 ${esc(equip[1])} × ${q} : tarif d’incrustation à définir`);return}total+=q*p;const gemName=gem===""?"Gemme non précisée":gems[+gem]?.name||"Gemme";lines.push(`🔮 ${esc(equip[1])} + ${esc(gemName)} × ${q} : ${fmt(q*p)}`)});const info=document.getElementById("orderInlayInfo");if(info)info.innerHTML=lines.length?lines.map(x=>`<div>${x}</div>`).join("")+`<div style="margin-top:10px;padding-top:10px;border-top:1px solid #3f252b"><b>Total incrustation : ${unknown?"À compléter":fmt(total)}</b></div>`:`<span class="small-note">Aucune incrustation ajoutée.</span>`;return{total,unknown,lines}}
 function partialRecipeCost(recipe,row){
   if(!recipe)return null;
   let raw=0,missing=0,provided=0;
@@ -356,9 +347,9 @@ function calcFull(){
       else{gemUnknown=true;gemLines.push(`${esc(g.name)} × ${q} : recette à compléter`)}
     }
   });
-  const iq=Math.max(0,+document.getElementById("orderInlayQty").value||0),ip=Math.max(0,+document.getElementById("orderInlayPrice").value||0),inlay=iq*ip,total=equipTotal+gemTotal+inlay;
-  document.getElementById("fullBreakdown").innerHTML=`<div>⚒️ Fabrications : <b>${fmt(equipTotal)}</b></div><div>💎 Création des gemmes : <b>${gemUnknown?"À compléter":fmt(gemTotal)}</b></div>${gemLines.map(x=>`<div class="small-note">↳ ${x}</div>`).join("")}<div>🔮 Incrustation : <b>${fmt(inlay)}</b></div>`;
-  document.getElementById("fullTotal").textContent=!gemUnknown?fmt(total):"À compléter"
+  const inlayData=calcOrderInlays(),inlay=inlayData.total,total=equipTotal+gemTotal+inlay;
+  document.getElementById("fullBreakdown").innerHTML=`<div>⚒️ Fabrications : <b>${fmt(equipTotal)}</b></div><div>💎 Création des gemmes : <b>${gemUnknown?"À compléter":fmt(gemTotal)}</b></div>${gemLines.map(x=>`<div class="small-note">↳ ${x}</div>`).join("")}<div>🔮 Incrustation : <b>${inlayData.unknown?"À compléter":fmt(inlay)}</b></div>${inlayData.lines.map(x=>`<div class="small-note">↳ ${x}</div>`).join("")}`;
+  document.getElementById("fullTotal").textContent=!gemUnknown&&!inlayData.unknown?fmt(total):"À compléter"
 }
 function bindProvision(row,calc){
   const cb=row.querySelector(".clientProvided"),fee=row.querySelector(".service-fee");
@@ -382,26 +373,17 @@ function addOrderGemRow(){
   function refreshRecipe(){const g=gems[+sel.value];const old=row.querySelector(".provision-details");const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(g?.recipe);row.querySelector(".provision").replaceWith(temp.querySelector(".provision"));row.querySelector(".service-fee-wrap").replaceWith(temp.querySelector(".service-fee-wrap"));old.replaceWith(temp.querySelector(".provision-details"));bindProvision(row,calcFull);calcFull()}
   sel.onchange=refreshRecipe;row.querySelector(".orderGemQty").oninput=calcFull;row.querySelector(".removeGem").onclick=()=>{row.remove();calcFull()};bindProvision(row,calcFull);calcFull()
 }
-function allItems(){return Object.values(resources).flat()}
-function addRow(){const wrap=document.getElementById("exchangeRows"),row=document.createElement("div");row.className="row";const opts=allItems().map(x=>`<option value="${x[1]}">${esc(x[0])} — ${fmt(x[1])}/u</option>`).join("");row.innerHTML=`<select class="exres">${opts}</select><input class="exqty" type="number" min="1" value="1"><button class="action secondary remove">×</button>`;wrap.appendChild(row);row.querySelector(".exres").onchange=exchange;row.querySelector(".exqty").oninput=exchange;row.querySelector(".remove").onclick=()=>{row.remove();exchange()};exchange()}
-function exchange(){let total=0;document.querySelectorAll("#exchangeRows .row").forEach(r=>total+=(+r.querySelector(".exres").value)*Math.max(1,+r.querySelector(".exqty").value||1));document.getElementById("exchangeTotal").textContent=fmt(total)}
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})});
 function safeRun(fn){try{fn()}catch(err){console.error("Commerce init:",err)}}
 function emergencyDisplay(){document.documentElement.style.visibility="visible";document.body.style.visibility="visible";document.body.style.opacity="1";document.querySelectorAll(".shell,.parchment,.content,.header,.tabs,.panel.active,.card,.footer").forEach(e=>{e.style.visibility="visible";e.style.opacity="1"})}
 function initCommerce(){
-  safeRun(renderTiers);
-  safeRun(renderLists);
-  safeRun(fillSelectors);
-  safeRun(()=>{if(!document.querySelector("#exchangeRows .row"))addRow()});
+  safeRun(renderTiers);safeRun(renderLists);safeRun(fillSelectors);
   safeRun(()=>{if(!document.querySelector("#orderEquipRows .equip-row"))addOrderEquipRow()});
   safeRun(()=>{if(!document.querySelector("#orderGemRows .row"))addOrderGemRow()});
-  const oq=document.getElementById("orderInlayQty"),op=document.getElementById("orderInlayPrice");
-  if(oq)oq.oninput=calcFull;if(op)op.oninput=calcFull;
-  const ar=document.getElementById("addRow"),ae=document.getElementById("addOrderEquip"),ag=document.getElementById("addOrderGem"),ai=document.getElementById("addInlay");
-  if(ar)ar.onclick=()=>safeRun(addRow);if(ae)ae.onclick=()=>safeRun(addOrderEquipRow);if(ag)ag.onclick=()=>safeRun(addOrderGemRow);if(ai)ai.onclick=()=>safeRun(addInlayRow);
-  safeRun(()=>{if(!document.querySelector("#inlayRows .order-inlay-row"))addInlayRow()});
-  safeRun(calcInlay);safeRun(calcFull);
-  emergencyDisplay();
+  const ae=document.getElementById("addOrderEquip"),ag=document.getElementById("addOrderGem"),ai=document.getElementById("addOrderInlay");
+  if(ae)ae.onclick=()=>safeRun(addOrderEquipRow);if(ag)ag.onclick=()=>safeRun(addOrderGemRow);if(ai)ai.onclick=()=>safeRun(addOrderInlayRow);
+  safeRun(()=>{if(!document.querySelector("#orderInlayRows .order-inlay-row"))addOrderInlayRow()});
+  safeRun(calcFull);emergencyDisplay();
 }
 function addExtraEmbers(){
   const field=document.createElement("div");field.className="ember-field extra";field.setAttribute("aria-hidden","true");
