@@ -234,9 +234,11 @@ h1{
 @media(max-width:700px){.sound-toggle{right:12px;bottom:12px;padding:8px 10px}.sound-toggle .sound-label{display:none}}
 
 /* V42 — correction du logo d'entrée et audio plus naturel */
-.entry-logo-wrap{max-height:92vh;overflow:visible}
-.entry-logo{display:block;width:min(320px,58vw);max-height:68vh;height:auto;object-fit:contain}
-@media(max-width:560px){.entry-logo{width:min(270px,68vw);max-height:58vh}}
+.entry-logo-wrap{max-height:none;overflow:visible;box-sizing:border-box;padding:22px 28px 26px}
+.entry-logo{display:block;width:min(300px,52vw);max-height:52vh;height:auto;object-fit:contain}
+.entry-screen.ignite .entry-logo-wrap{animation:entryLaunch .95s cubic-bezier(.2,.72,.2,1) forwards}
+@keyframes entryLaunch{0%{transform:scale(1);opacity:1;filter:none}45%{transform:scale(1.045);opacity:1;filter:drop-shadow(0 0 24px rgba(255,35,55,.75))}100%{transform:scale(1.08);opacity:0;filter:blur(5px) drop-shadow(0 0 35px rgba(255,35,55,.5))}}
+@media(max-width:560px){.entry-logo-wrap{padding:18px 20px 22px}.entry-logo{width:min(260px,64vw);max-height:48vh}}
 </style>
 </head>
 <body style="overflow:hidden">
@@ -555,9 +557,11 @@ if(document.readyState === "loading") document.addEventListener("DOMContentLoade
   let opened=false;
   function openEntry(){
     if(opened) return; opened=true;
+    if(window.septemEntryBanger) window.septemEntryBanger();
     screen.classList.add('ignite');
-    setTimeout(()=>screen.classList.add('exit'),900);
-    setTimeout(()=>{screen.remove(); document.body.style.overflow='';},2050);
+    // Laisser l'impact sonore et visuel respirer avant de faire disparaître l'écran.
+    setTimeout(()=>screen.classList.add('exit'),1050);
+    setTimeout(()=>{screen.remove(); document.body.style.overflow='';},2200);
   }
   logo.addEventListener('click',openEntry);
   logo.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openEntry();}});
@@ -628,6 +632,27 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){const m=document.ge
     const g=c.createGain(); g.gain.setValueAtTime(.0001,now); g.gain.exponentialRampToValueAtTime(.014,now+.5); g.gain.setValueAtTime(.014,now+1.2); g.gain.exponentialRampToValueAtTime(.009,now+2.1); g.gain.exponentialRampToValueAtTime(.012,now+2.7); g.gain.exponentialRampToValueAtTime(.0001,now+3.4);
     src.connect(f); f.connect(g); g.connect(fxGain); src.start(now); src.stop(now+3.45);
   }
+  function entryBanger(){
+    if(!fxEnabled) return;
+    const c=getCtx(), now=c.currentTime;
+    // Impact cinématique court : souffle + grave + petite signature brillante.
+    const whoosh=c.createBufferSource(); whoosh.buffer=noiseBuffer(1.15,.988);
+    const wf=c.createBiquadFilter(); wf.type='lowpass'; wf.frequency.setValueAtTime(1800,now); wf.frequency.exponentialRampToValueAtTime(260,now+.95); wf.Q.value=.18;
+    const wg=c.createGain(); wg.gain.setValueAtTime(.0001,now); wg.gain.exponentialRampToValueAtTime(.09,now+.08); wg.gain.exponentialRampToValueAtTime(.0001,now+1.1);
+    whoosh.connect(wf); wf.connect(wg); wg.connect(fxGain); whoosh.start(now); whoosh.stop(now+1.15);
+    const bass=c.createOscillator(), bg=c.createGain(), bf=c.createBiquadFilter();
+    bass.type='sine'; bass.frequency.setValueAtTime(92,now); bass.frequency.exponentialRampToValueAtTime(46,now+.72);
+    bf.type='lowpass'; bf.frequency.value=220; bf.Q.value=.35;
+    bg.gain.setValueAtTime(.0001,now); bg.gain.exponentialRampToValueAtTime(.16,now+.045); bg.gain.exponentialRampToValueAtTime(.0001,now+1.0);
+    bass.connect(bf); bf.connect(bg); bg.connect(fxGain); bass.start(now); bass.stop(now+1.05);
+    const hit=c.createOscillator(), hg=c.createGain(), hf=c.createBiquadFilter();
+    hit.type='triangle'; hit.frequency.setValueAtTime(330,now+.03); hit.frequency.exponentialRampToValueAtTime(165,now+.62);
+    hf.type='lowpass'; hf.frequency.value=900;
+    hg.gain.setValueAtTime(.0001,now+.02); hg.gain.exponentialRampToValueAtTime(.045,now+.06); hg.gain.exponentialRampToValueAtTime(.0001,now+.75);
+    hit.connect(hf); hf.connect(hg); hg.connect(fxGain); hit.start(now+.02); hit.stop(now+.8);
+  }
+  window.septemEntryBanger=entryBanger;
+
   const chords=[[146.83,174.61,220],[130.81,155.56,196],[116.54,146.83,174.61],[110,138.59,164.81],[123.47,155.56,185]];
   function playChord(){
     if(!enabled) return;
