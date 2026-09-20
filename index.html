@@ -22,8 +22,8 @@ body:after{content:"";position:fixed;inset:-10%;pointer-events:none;z-index:0;ba
 .provision{display:flex;margin-top:12px;align-items:center;gap:7px;padding:8px 10px;border:1px solid #402229;background:rgba(18,12,15,.72);color:#d8c8b4;font-size:12px;white-space:nowrap}.provision input{accent-color:#d30e26}.service-fee{width:120px!important}.service-fee-wrap{display:none;align-items:center;gap:6px;color:#c7b9a5;font-size:11px}.row.client-provided .service-fee-wrap{display:flex}.client-badge{display:inline-block;padding:3px 7px;border:1px solid #6b2630;background:rgba(120,8,24,.15);color:#ffb8bd;font-size:10px;letter-spacing:.5px;text-transform:uppercase}
 .provision-details{display:none;grid-column:1/-1;margin-top:6px;padding:9px 10px;border-left:2px solid var(--red);background:rgba(18,10,13,.72);border-top:1px solid #382027}.row.client-provided .provision-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px}.material-provision{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px;border:1px solid #3b272c;background:rgba(0,0,0,.22);font-size:11px;color:#d9c9b6}.material-provision input{width:58px!important;margin:0!important;padding:5px!important;text-align:center}.provision-summary{grid-column:1/-1;color:#bfae99;font-size:11px}.provision-summary b{color:#f0dfc7}.service-fee-wrap{flex-wrap:wrap}.resource-note{font-size:10px;color:#8f8171}
 
-@media(max-width:760px){.logo{height:205px;max-width:62vw}.provision{white-space:normal}.service-fee-wrap{flex-wrap:wrap}.service-fee{width:100%!important}}
-@media(max-width:760px){.nav-sep{display:none}.order-inlay-row{grid-template-columns:1fr}.inlay-labels{display:none}.contract-fields{grid-template-columns:1fr}}
+@media(max-width:760px){.price-rule{grid-template-columns:1fr;}.logo{height:205px;max-width:62vw}.provision{white-space:normal}.service-fee-wrap{flex-wrap:wrap}.service-fee{width:100%!important}}
+@media(max-width:760px){.price-rule{grid-template-columns:1fr;}.nav-sep{display:none}.order-inlay-row{grid-template-columns:1fr}.inlay-labels{display:none}.contract-fields{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.mist,.ember-field,.header:before{animation:none!important}.logo,.section-title:after,.header:before{animation:none!important}}
 .parchment:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(circle at 50% 0%,rgba(255,40,60,.09),transparent 30%),radial-gradient(circle at 50% 100%,rgba(255,40,60,.045),transparent 28%);mix-blend-mode:screen}
 .header{position:relative;isolation:isolate}
@@ -57,10 +57,10 @@ table{width:100%;border-collapse:collapse}th,td{padding:8px 6px;border-bottom:1p
 @keyframes softPulse{0%,100%{box-shadow:inset 0 0 20px rgba(210,14,38,.02)}50%{box-shadow:inset 0 0 30px rgba(210,14,38,.07)}}.total{font-size:31px;font-weight:900;color:#ff3146;margin-top:4px;text-shadow:0 0 15px rgba(255,49,70,.16)}
 .notice{border-left:3px solid var(--red);padding:13px 15px;margin-bottom:18px;background:rgba(210,15,34,.055);margin-top:14px;color:#cbbca7}.section-title{margin:24px 0 12px;padding:10px 12px;border-left:3px solid var(--red);background:rgba(210,15,34,.06);color:#ead9bb;font-weight:bold;letter-spacing:.7px}.mini-card{margin-top:12px;padding:14px;border:1px solid #3e292e;background:#0d0d10;line-height:1.8}.small-note{font-size:12px;color:#a99b88}.pending{color:#e5a0a0}.ok{color:#a8d39e}
 .footer{text-align:center;border-top:1px solid #4d252c;margin-top:25px;padding-top:18px;font-style:italic;color:#b9aa93}.badge{display:inline-block;padding:5px 9px;border:1px solid #542a31;margin:3px;font-size:12px;color:#cdbb9c;background:#101013}
-.price-rule{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.rule{padding:12px;border:1px solid #3d2930;background:#0d0d10;text-align:center}.rule b{display:block;color:#ff4356;font-size:18px;margin-top:4px}
+.price-rule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.rule{padding:12px;border:1px solid #3d2930;background:#0d0d10;text-align:center}.rule b{display:block;color:#ff4356;font-size:18px;margin-top:4px}
 .corner{position:absolute;width:120px;height:120px;opacity:.12;pointer-events:none;border:1px solid #d20f22}.corner.tl{top:16px;left:16px;border-right:0;border-bottom:0}.corner.tr{top:16px;right:16px;border-left:0;border-bottom:0}.corner.bl{bottom:16px;left:16px;border-right:0;border-top:0}.corner.br{bottom:16px;right:16px;border-left:0;border-top:0}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media(max-width:760px){.content{padding:20px 14px}.grid,.form-grid,.price-rule{grid-template-columns:1fr}.row,.row-labels{grid-template-columns:1fr}.row-labels{display:none}h1{font-size:28px;letter-spacing:2px}.logo{width:175px;height:115px}.tabs{position:static}.tab{flex:1 1 44%}}
+@media(max-width:760px){.price-rule{grid-template-columns:1fr;}.content{padding:20px 14px}.grid,.form-grid,.price-rule{grid-template-columns:1fr}.row,.row-labels{grid-template-columns:1fr}.row-labels{display:none}h1{font-size:28px;letter-spacing:2px}.logo{width:175px;height:115px}.tabs{position:static}.tab{flex:1 1 44%}}
 
 /* Atmosphère mystique — brume latérale */
 .mist-field{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;opacity:1}
@@ -266,18 +266,45 @@ const equipment=[
 const gemNames=["Force","Rapidité","Célérité","Précision","Arcanique","Vitesse","Ténacité","Protection"];
 const gemRecipes={
 "T1":{
-"Force":[["Résine de forêt",1],["Scories du Pays du Fer",1],["Sable raffiné",1],["Gemme T1",1]],
-"Rapidité":[["Scories du Pays du Fer",1],["Résine de forêt",1],["Sable raffiné",1],["Gemme T1",1]],
-"Célérité":[["Pétale du Pays des Cerisiers",1],["Résine de forêt",1],["Sable raffiné",1],["Gemme T1",1]],
-"Précision":[["Scories du Pays du Fer",1],["Résine de forêt",1],["Gemme T1",1],["Pétale du Pays des Cerisiers",1]],
-"Arcanique":[["Gemme T1",1],["Pétale du Pays des Cerisiers",1],["Sable raffiné",1],["Résine de forêt",1]],
-"Vitesse":[["Pétale du Pays des Cerisiers",1],["Scories du Pays du Fer",1],["Résine de forêt",1],["Gemme T1",1]],
-"Ténacité":[["Résine de forêt",1],["Pétale du Pays des Cerisiers",1],["Scories du Pays du Fer",1],["Sable raffiné",1]],
-"Protection":[["Scories du Pays du Fer",1],["Résine de forêt",1],["Sable raffiné",1],["Pétale du Pays des Cerisiers",1]]
+"Force":[["Gemme T1",1],["Scories du Pays du Fer",1],["Sable raffiné",1],["Résine de forêt",1]],
+"Rapidité":[["Gemme T1",1],["Scories du Pays du Fer",1],["Sable raffiné",1],["Résine de forêt",1]],
+"Célérité":[["Gemme T1",1],["Pétale du Pays des Cerisiers",1],["Sable raffiné",1],["Résine de forêt",1]],
+"Précision":[["Gemme T1",1],["Scories du Pays du Fer",1],["Résine de forêt",1],["Pétale du Pays des Cerisiers",1]],
+"Arcanique":[["Gemme T1",1],["Résine de forêt",1],["Pétale du Pays des Cerisiers",1],["Sable raffiné",1]],
+"Vitesse":[["Gemme T1",1],["Pétale du Pays des Cerisiers",1],["Scories du Pays du Fer",1],["Résine de forêt",1]],
+"Ténacité":[["Gemme T1",1],["Pétale du Pays des Cerisiers",1],["Sable raffiné",1],["Scories du Pays du Fer",1]],
+"Protection":[["Gemme T1",1],["Scories du Pays du Fer",1],["Sable raffiné",1],["Pétale du Pays des Cerisiers",1]]
 },
-"T2":[["Bambou traité",2],["Sève des cerisiers",2],["Alliage brut",2],["Verre soufflé du désert",2],["Venin de salamandre",2]],
-"T3":[["Sève des cerisiers",2],["Alliage brut",2],["Mousse de chakra",2],["Écorce ancienne",2],["Soie des dunes",2]],
-"T4":[["Mousse de chakra",2],["Noyau compresseur",2],["Fragment de météorite",2],["Soie des dunes",2],["Cœur d’arbre millénaire",2],["Sève des cerisiers",2]]
+"T2":{
+"Force":[["Bambou traité",1],["Gemme T2",1],["Alliage brut",2],["Verre soufflé du désert",1],["Sève des cerisiers",1]],
+"Rapidité":[["Bambou traité",1],["Gemme T2",1],["Sève des cerisiers",2],["Verre soufflé du désert",1],["Alliage brut",1]],
+"Célérité":[["Gemme T2",1],["Bambou traité",2],["Alliage brut",1],["Verre soufflé du désert",1],["Sève des cerisiers",1]],
+"Précision":[["Gemme T2",1],["Bambou traité",1],["Sève des cerisiers",2],["Verre soufflé du désert",1],["Alliage brut",1]],
+"Arcanique":[["Gemme T2",1],["Bambou traité",1],["Alliage brut",2],["Verre soufflé du désert",1],["Sève des cerisiers",1]],
+"Vitesse":[["Gemme T2",1],["Bambou traité",2],["Alliage brut",1],["Verre soufflé du désert",1],["Sève des cerisiers",1]],
+"Ténacité":[["Gemme T2",1],["Bambou traité",1],["Sève des cerisiers",1],["Verre soufflé du désert",1],["Alliage brut",2]],
+"Protection":[["Gemme T2",1],["Bambou traité",1],["Sève des cerisiers",2],["Verre soufflé du désert",1],["Alliage brut",1]]
+},
+"T3":{
+"Force":[["Gemme T3",1],["Noyau compresseur",2],["Mousse sacrée",1],["Écorce ancienne",2],["Soie des dunes",2]],
+"Rapidité":[["Gemme T3",1],["Noyau compresseur",2],["Soie des dunes",2],["Écorce ancienne",1],["Mousse sacrée",2]],
+"Célérité":[["Gemme T3",1],["Noyau compresseur",2],["Soie des dunes",1],["Écorce ancienne",2],["Mousse sacrée",2]],
+"Précision":[["Gemme T3",1],["Noyau compresseur",2],["Mousse sacrée",1],["Écorce ancienne",2],["Soie des dunes",2]],
+"Arcanique":[["Gemme T3",1],["Noyau compresseur",2],["Soie des dunes",2],["Écorce ancienne",2],["Mousse sacrée",1]],
+"Vitesse":[["Gemme T3",1],["Noyau compresseur",2],["Mousse sacrée",1],["Écorce ancienne",2],["Soie des dunes",2]],
+"Ténacité":[["Gemme T3",1],["Noyau compresseur",2],["Mousse sacrée",2],["Écorce ancienne",1],["Soie des dunes",2]],
+"Protection":[["Gemme T3",1],["Noyau compresseur",1],["Soie des dunes",2],["Écorce ancienne",2],["Mousse sacrée",2]]
+},
+"T4":{
+"Force":[["Gemme T4",1],["Mousse sacrée",1],["Noyau compresseur",1],["Fragment de météorite",2],["Soie des dunes",2],["Cœur d’arbre millénaire",2]],
+"Rapidité":[["Mousse sacrée",1],["Noyau compresseur",1],["Fragment de météorite",2],["Gemme T4",1],["Cœur d’arbre millénaire",2],["Soie des dunes",2]],
+"Célérité":[["Gemme T4",1],["Noyau compresseur",1],["Fragment de météorite",2],["Soie des dunes",1],["Cœur d’arbre millénaire",2],["Mousse sacrée",2]],
+"Précision":[["Gemme T4",1],["Soie des dunes",2],["Noyau compresseur",1],["Fragment de météorite",2],["Cœur d’arbre millénaire",2],["Mousse sacrée",1]],
+"Arcanique":[["Gemme T4",1],["Mousse sacrée",1],["Noyau compresseur",1],["Fragment de météorite",2],["Cœur d’arbre millénaire",2],["Soie des dunes",2]],
+"Vitesse":[["Gemme T4",1],["Soie des dunes",1],["Noyau compresseur",1],["Fragment de météorite",2],["Mousse sacrée",2],["Cœur d’arbre millénaire",2]],
+"Ténacité":[["Gemme T4",1],["Mousse sacrée",1],["Noyau compresseur",1],["Fragment de météorite",2],["Cœur d’arbre millénaire",2],["Soie des dunes",2]],
+"Protection":[["Gemme T4",1],["Noyau compresseur",1],["Fragment de météorite",2],["Soie des dunes",1],["Cœur d’arbre millénaire",2],["Mousse sacrée",2]]
+}
 };
 const gems=[];for(const type of gemNames)for(let i=1;i<=4;i++)gems.push({tier:"T"+i,name:`Gemme de ${type} ${i}`,recipe:gemRecipes["T"+i][type]||gemRecipes["T"+i]});
 
