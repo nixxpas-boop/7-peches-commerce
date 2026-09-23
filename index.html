@@ -239,6 +239,10 @@ h1{
 .entry-screen.ignite .entry-logo-wrap{animation:entryLaunch .95s cubic-bezier(.2,.72,.2,1) forwards}
 @keyframes entryLaunch{0%{transform:scale(1);opacity:1;filter:none}45%{transform:scale(1.045);opacity:1;filter:drop-shadow(0 0 24px rgba(255,35,55,.75))}100%{transform:scale(1.08);opacity:0;filter:blur(5px) drop-shadow(0 0 35px rgba(255,35,55,.5))}}
 @media(max-width:560px){.entry-logo-wrap{padding:18px 20px 22px}.entry-logo{width:min(260px,64vw);max-height:48vh}}
+
+/* V47 — onglet Réparation */
+.repair-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 20px}.repair-tier{border:1px solid #4a252b;background:linear-gradient(180deg,#17171b,#101014);padding:16px;position:relative;transition:.23s}.repair-tier:hover{transform:translateY(-3px);border-color:#8a2735;box-shadow:0 12px 28px rgba(0,0,0,.34),0 0 18px rgba(210,14,38,.09)}.repair-tier h3{margin:0 0 5px;color:#f0dfbf}.repair-row{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(90px,.45fr) minmax(300px,1.5fr) auto;gap:10px;align-items:end;margin-bottom:10px;padding:10px;border:1px solid #3e272d;background:rgba(10,10,13,.55);transition:.2s}.repair-row:hover{transform:translateY(-2px);border-color:#712532;box-shadow:0 8px 20px rgba(0,0,0,.24),0 0 14px rgba(210,14,38,.08)}.repair-row .provision-details{grid-column:1/-1}.repair-row.client-provided{border-color:#712532}.repair-price{color:#ff5364!important;font-weight:bold;text-align:center}.repair-status{display:inline-block;margin-top:8px;padding:4px 8px;border:1px solid #4b252c;background:#0d0d10;color:#bfae99;font-size:11px}.repair-labels{grid-template-columns:minmax(180px,.8fr) minmax(90px,.45fr) minmax(300px,1.5fr) auto}.repair-labels span:nth-child(2){text-align:left}
+@media(max-width:760px){.repair-grid{grid-template-columns:1fr}.repair-row,.repair-labels{grid-template-columns:1fr}.repair-labels{display:none}}
 </style>
 </head>
 <body style="overflow:hidden">
@@ -276,6 +280,7 @@ h1{
 <button class="tab" data-tab="gemmes">💎 Gemmes</button>
 <span class="nav-sep" aria-hidden="true"></span>
 <button class="tab" data-tab="commande">🧾 Commande complète</button>
+<button class="tab" data-tab="reparation">🛠️ Réparation</button>
 <span class="nav-sep" aria-hidden="true"></span>
 <button class="tab" data-tab="contrats">📜 Contrats</button>
 </nav>
@@ -314,6 +319,23 @@ h1{
 <div class="result" style="margin-top:22px;text-align:left"><div class="mini-note">Récapitulatif</div><div id="fullBreakdown" style="line-height:1.9;margin-top:8px"></div><div style="border-top:1px solid #63313a;margin-top:12px;padding-top:12px;text-align:center">TOTAL FINAL<div class="total" id="fullTotal">0 Ryos</div></div></div>
 </div></section>
 
+<section id="reparation" class="panel"><div class="card">
+<h2>🛠️ Réparation d'équipement</h2>
+<p>Réparer un équipement = un service distinct de sa fabrication. Les tarifs sont calculés avec la marge habituelle de 20 %.</p>
+<div class="notice"><b>Ressources fournies par le client :</b> cochez la case sur une ligne si le client apporte des ressources. Vous pourrez ensuite indiquer les quantités fournies ; seules les ressources manquantes seront facturées. Un tarif de service optionnel peut également être ajouté.</div>
+<div class="repair-grid">
+  <article class="repair-tier"><div class="tier-tag">T1</div><h3>Réparation T1</h3><div class="materials"><span class="material">1 × Sable raffiné</span><span class="material">1 × Scories du Pays du Fer</span><span class="material">1 × Résine de forêt</span><span class="material">1 × Pétale du Pays des Cerisiers</span></div><div class="calc-price">8 125 Ryos</div><div class="small-note">Coût ressources : 6 500 Ryos • marge : 1 625 Ryos • 20 % du prix final</div></article>
+  <article class="repair-tier"><div class="tier-tag">T2</div><h3>Réparation T2</h3><div class="materials"><span class="material">3 × Verre soufflé du désert</span><span class="material">3 × Alliage brut</span><span class="material">3 × Sève des cerisiers</span><span class="material">3 × Bambou traité</span></div><div class="calc-price">61 875 Ryos</div><div class="small-note">Coût ressources : 49 500 Ryos • marge : 12 375 Ryos • 20 % du prix final</div></article>
+  <article class="repair-tier"><div class="tier-tag">T3</div><h3>Réparation T3</h3><div class="materials"><span class="material pending">Recette à confirmer</span></div><div class="small-note pending">Les ressources nécessaires seront ajoutées lorsque la recette sera définie.</div></article>
+  <article class="repair-tier"><div class="tier-tag">T4</div><h3>Réparation T4</h3><div class="materials"><span class="material pending">Recette à confirmer</span></div><div class="small-note pending">Les ressources nécessaires seront ajoutées lorsque la recette sera définie.</div></article>
+</div>
+
+<div class="section-title">🧾 Calculateur de réparation</div>
+<div class="row-labels repair-labels"><span>Niveau</span><span>Quantité</span><span>Ressources</span><span></span></div>
+<div id="repairRows"></div>
+<button type="button" class="action secondary" id="addRepair" onclick="addRepairRow()">＋ Ajouter une réparation</button>
+<div class="mini-card" id="repairInfo"><span class="small-note">Aucune réparation ajoutée.</span></div>
+</div></section>
 
 <section id="contrats" class="panel">
   <div class="card">
@@ -433,7 +455,52 @@ function equipOptions(){return equipment.map((x,i)=>`<option value="${i}">${esc(
 function gemOptions(){return '<option value="">Aucune</option>'+gems.map((g,i)=>`<option value="${i}">${esc(g.name)} — ${g.tier}</option>`).join("")}
 function fillSelectors(){}
 const INLAY_TARIFFS={T1:5000,T2:15000,T3:35000,T4:80000};
+const REPAIR_RECIPES={
+  T1:[["Sable raffiné",1],["Scories du Pays du Fer",1],["Résine de forêt",1],["Pétale du Pays des Cerisiers",1]],
+  T2:[["Verre soufflé du désert",3],["Alliage brut",3],["Sève des cerisiers",3],["Bambou traité",3]],
+  T3:null,
+  T4:null
+};
 function getInlayTariff(equip,gemIndex){if(!equip||gemIndex==null||gemIndex==="")return null;const g=gems[+gemIndex];if(!g)return null;return INLAY_TARIFFS[g.tier]??null}
+function repairOptions(){return '<option value="">Choisir un niveau</option>'+["T1","T2","T3","T4"].map(t=>`<option value="${t}">${t}</option>`).join("")}
+function addRepairRow(){
+  const wrap=document.getElementById("repairRows");if(!wrap)return;
+  const row=document.createElement("div");row.className="repair-row";
+  row.innerHTML=`<select class="repairTierSelect">${repairOptions()}</select><input class="repairQty" type="number" min="1" value="1">${rowProvisionHtml(null)}<button type="button" class="action secondary removeRepair">×</button>`;
+  wrap.appendChild(row);
+  const sel=row.querySelector(".repairTierSelect");
+  function refreshRepair(){
+    const recipe=REPAIR_RECIPES[sel.value]||null;
+    const old=row.querySelector(".provision-details");
+    const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(recipe);
+    row.querySelector(".provision").replaceWith(temp.querySelector(".provision"));
+    row.querySelector(".service-fee-wrap").replaceWith(temp.querySelector(".service-fee-wrap"));
+    old.replaceWith(temp.querySelector(".provision-details"));
+    bindProvision(row,calcRepairs);calcRepairs();
+  }
+  sel.onchange=refreshRepair;row.querySelector(".repairQty").oninput=calcRepairs;row.querySelector(".removeRepair").onclick=()=>{row.remove();calcRepairs()};bindProvision(row,calcRepairs);calcRepairs();
+}
+function calcRepairs(){
+  let total=0,lines=[];
+  document.querySelectorAll("#repairRows .repair-row").forEach(r=>{
+    const tier=r.querySelector(".repairTierSelect")?.value;if(!tier)return;
+    const q=Math.max(1,+r.querySelector(".repairQty")?.value||1),recipe=REPAIR_RECIPES[tier],provided=r.querySelector(".clientProvided")?.checked;
+    if(!recipe){lines.push(`<div>🛠️ Réparation ${tier} × ${q} : <span class="pending">recette à confirmer</span></div>`);return;}
+    if(provided){
+      r.classList.add("client-provided");
+      const pc=partialRecipeCost(recipe,r),fee=Math.max(0,+r.querySelector(".service-fee")?.value||0),unit=sellPrice(pc.raw)+fee;
+      total+=unit*q;
+      if(pc.missing===0) lines.push(`<div>🛠️ Réparation ${tier} × ${q} : <span class="client-badge">100 % matériaux fournis</span>${fee?` • service ${fmt(fee*q)}`:""}</div>`);
+      else lines.push(`<div>🛠️ Réparation ${tier} × ${q} : <span class="client-badge">${pc.provided}/${pc.totalRequired} composants fournis</span> • matériaux restants ${fmt(pc.price)} / réparation${fee?` • service ${fmt(fee)}/u`:""} → ${fmt(unit*q)}</div>`);
+    }else{
+      r.classList.remove("client-provided");
+      const c=recipeCost(recipe);total+=c.price*q;lines.push(`<div>🛠️ Réparation ${tier} × ${q} : ${fmt(c.price*q)}</div>`);
+    }
+  });
+  const info=document.getElementById("repairInfo");
+  if(info)info.innerHTML=lines.length?lines.join("")+`<div style="margin-top:10px;padding-top:10px;border-top:1px solid #3f252b"><b>Total réparations : ${fmt(total)}</b></div>`:`<span class="small-note">Aucune réparation ajoutée.</span>`;
+  return total;
+}
 function inlayEquipOptions(){return '<option value="">Choisir un équipement</option>'+equipment.map((x,i)=>`<option value="${i}">${esc(x[1])} — ${x[0]==="ARME"?"Arme":x[0]}</option>`).join("")}
 function addOrderInlayRow(){const wrap=document.getElementById("orderInlayRows");if(!wrap)return;const row=document.createElement("div");row.className="order-inlay-row";row.innerHTML=`<select class="orderInlayEquip">${inlayEquipOptions()}</select><select class="orderInlayGem">${gemOptions()}</select><input class="orderInlayQty" type="number" min="1" value="1"><input class="inlay-price" type="text" value="À définir" readonly><button type="button" class="action secondary removeOrderInlay">×</button>`;wrap.appendChild(row);const sel=row.querySelector(".orderInlayEquip"),gemSel=row.querySelector(".orderInlayGem"),price=row.querySelector(".inlay-price");function refreshTariff(){const equip=equipment[+sel.value],tariff=getInlayTariff(equip,gemSel.value);price.value=tariff==null?"À définir":fmt(tariff);calcFull()}sel.onchange=refreshTariff;gemSel.onchange=refreshTariff;row.querySelector(".orderInlayQty").oninput=calcFull;row.querySelector(".removeOrderInlay").onclick=()=>{row.remove();calcFull()};calcFull()}
 function calcOrderInlays(){let total=0,unknown=false,lines=[];document.querySelectorAll("#orderInlayRows .order-inlay-row").forEach(r=>{const ev=r.querySelector(".orderInlayEquip")?.value;if(ev===""||ev==null)return;const equip=equipment[+ev],gem=r.querySelector(".orderInlayGem")?.value||"",q=Math.max(1,+r.querySelector(".orderInlayQty")?.value||1),p=getInlayTariff(equip,gem);if(p==null){unknown=true;lines.push(`🔮 ${esc(equip[1])} × ${q} : tarif d’incrustation à définir`);return}total+=q*p;const gemName=gem===""?"Gemme non précisée":gems[+gem]?.name||"Gemme";lines.push(`🔮 ${esc(equip[1])} + ${esc(gemName)} × ${q} : ${fmt(q*p)}`)});const info=document.getElementById("orderInlayInfo");if(info)info.innerHTML=lines.length?lines.map(x=>`<div>${x}</div>`).join("")+`<div style="margin-top:10px;padding-top:10px;border-top:1px solid #3f252b"><b>Total incrustation : ${unknown?"À compléter":fmt(total)}</b></div>`:`<span class="small-note">Aucune incrustation ajoutée.</span>`;return{total,unknown,lines}}
@@ -522,7 +589,7 @@ function initCommerce(){
   safeRun(renderTiers);safeRun(renderLists);safeRun(fillSelectors);
   const ae=document.getElementById("addOrderEquip"),ag=document.getElementById("addOrderGem"),ai=document.getElementById("addOrderInlay");
   if(ae)ae.onclick=()=>safeRun(addOrderEquipRow);if(ag)ag.onclick=()=>safeRun(addOrderGemRow);if(ai)ai.onclick=()=>safeRun(addOrderInlayRow);
-  safeRun(calcFull);emergencyDisplay();
+  safeRun(calcFull);safeRun(calcRepairs);emergencyDisplay();
 }
 function addExtraEmbers(){
   const field=document.createElement("div");field.className="ember-field extra";field.setAttribute("aria-hidden","true");
