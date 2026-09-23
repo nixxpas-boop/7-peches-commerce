@@ -348,9 +348,9 @@ h1{
 const MARGIN=0.20;
 const resources={
 "T1 — Communes":[["Pétale du Pays des Cerisiers",1500],["Scories du Pays du Fer",1500],["Résine de forêt",2000],["Fleur de brume",1700],["Poudre écarlate",1700],["Herbe cendrée",1700],["Racine pourpre",1700],["Sable raffiné",2000],["Gemme T1",1000]],
-"T2 — Peu communes":[["Verre soufflé du désert",4500],["Sève des cerisiers",3500],["Alliage brut",3500],["Bambou traité",5000],["Venin de salamandre",5500],["Champignon noir",5500],["Mousse de chakra",5000],["Sève obscure",5500],["Feuille lunaire",6000],["Gemme T2",1500]],
-"T3 — Rares":[["Écorce ancienne",12000],["Noyau compresseur",12000],["Mousse sacrée",20000],["Soie des dunes",20000],["Cristal de flux",18000],["Gemme T3",15000]],
-"T4 — Très rares":[["Cœur d’arbre millénaire",120000],["Fragment de météorite",125000],["Gemme T4",150000]]
+"T2 — Peu communes":[["Verre soufflé du désert",5000],["Sève des cerisiers",3500],["Alliage brut",3500],["Bambou traité",4500],["Venin de salamandre",3500],["Champignon noir",3500],["Mousse de chakra",5000],["Sève obscure",4000],["Feuille lunaire",4500],["Gemme T2",2000]],
+"T3 — Rares":[["Écorce ancienne",8500],["Noyau compresseur",9000],["Mousse sacrée",30000],["Soie des dunes",30000],["Cristal de flux",18000],["Gemme T3",10000]],
+"T4 — Très rares":[["Cœur d’arbre millénaire",120000],["Fragment de météorite",120000],["Gemme T4",135000]]
 };
 const prices=Object.fromEntries(Object.values(resources).flat());
 const fmt=n=>new Intl.NumberFormat("fr-FR").format(Math.round(n))+" Ryos";
@@ -358,7 +358,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const sellPrice=cost=>cost/(1-MARGIN);
 
 const equipment=[
-["T1","[C] Torse jutsu T1",[["Pétale du Pays des Cerisiers",2],["Gemme T1",2],["Sable raffiné",2],["Scories du Pays du Fer",2]]],["T1","[C] Collier T1",[["Scories du Pays du Fer",2],["Pétale du Pays des Cerisiers",2],["Gemme T1",2],["Sable raffiné",2]]],["T1","[C] Pantalon jutsu T1",[["Scories du Pays du Fer",2],["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Gemme T1",2]]],["T1","[C] Bottes T1",[["Scories du Pays du Fer",2],["Gemme T1",2],["Sable raffiné",2],["Pétale du Pays des Cerisiers",2]]],["T1","[C] Gants T1",[["Pétale du Pays des Cerisiers",2],["Gemme T1",2],["Sable raffiné",2],["Scories du Pays du Fer",2]]],["T1","[C] Boucles d’oreille T1",[["Gemme T1",2],["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2]]],["T1","[C] Anneau T1",[["Scories du Pays du Fer",2],["Gemme T1",2],["Sable raffiné",2],["Pétale du Pays des Cerisiers",2]]],
+["T1","[C] Torse jutsu T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],["T1","[C] Collier T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],["T1","[C] Pantalon jutsu T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],["T1","[C] Bottes T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],["T1","[C] Gants T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],["T1","[C] Boucles d’oreille T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],["T1","[C] Anneau T1",[["Pétale du Pays des Cerisiers",2],["Sable raffiné",2],["Scories du Pays du Fer",2],["Résine de forêt",2]]],
 ["T2","[B] Collier T2",[["Sève des cerisiers",2],["Alliage brut",2],["Bambou traité",2],["Verre soufflé du désert",2]]],
 ["T2","[B] Anneau T2",[["Sève des cerisiers",2],["Alliage brut",2],["Bambou traité",2],["Verre soufflé du désert",2]]],
 ["T2","[B] Pantalon jutsu T2",[["Sève des cerisiers",2],["Alliage brut",2],["Bambou traité",2],["Verre soufflé du désert",2]]],
