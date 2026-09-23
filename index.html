@@ -466,19 +466,20 @@ function repairOptions(){return '<option value="">Choisir un niveau</option>'+["
 function addRepairRow(){
   const wrap=document.getElementById("repairRows");if(!wrap)return;
   const row=document.createElement("div");row.className="repair-row";
-  row.innerHTML=`<select class="repairTierSelect">${repairOptions()}</select><input class="repairQty" type="number" min="1" value="1">${rowProvisionHtml(null)}<button type="button" class="action secondary removeRepair">×</button>`;
+  row.innerHTML=`<select class="repairTierSelect">${repairOptions()}</select><input class="repairQty" type="number" min="1" value="1">${rowProvisionHtml(null,1)}<button type="button" class="action secondary removeRepair">×</button>`;
   wrap.appendChild(row);
   const sel=row.querySelector(".repairTierSelect");
   function refreshRepair(){
     const recipe=REPAIR_RECIPES[sel.value]||null;
+    const qty=Math.max(1,+row.querySelector(".repairQty")?.value||1);
     const old=row.querySelector(".provision-details");
-    const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(recipe);
+    const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(recipe,qty);
     row.querySelector(".provision").replaceWith(temp.querySelector(".provision"));
     row.querySelector(".service-fee-wrap").replaceWith(temp.querySelector(".service-fee-wrap"));
     old.replaceWith(temp.querySelector(".provision-details"));
     bindProvision(row,calcRepairs);calcRepairs();
   }
-  sel.onchange=refreshRepair;row.querySelector(".repairQty").oninput=calcRepairs;row.querySelector(".removeRepair").onclick=()=>{row.remove();calcRepairs()};bindProvision(row,calcRepairs);calcRepairs();
+  sel.onchange=refreshRepair;row.querySelector(".repairQty").oninput=()=>{syncProvisionRequirements(row,REPAIR_RECIPES[sel.value]||null,row.querySelector(".repairQty").value);calcRepairs()};row.querySelector(".removeRepair").onclick=()=>{row.remove();calcRepairs()};bindProvision(row,calcRepairs);calcRepairs();
 }
 function calcRepairs(){
   let total=0,lines=[];
@@ -507,16 +508,31 @@ function calcOrderInlays(){let total=0,unknown=false,lines=[];document.querySele
 function partialRecipeCost(recipe,row){
   if(!recipe)return null;
   let raw=0,missing=0,provided=0;
-  recipe.forEach(([n,q],i)=>{
+  const qty=Math.max(1,+row?.querySelector(".orderEquipQty,.orderGemQty,.repairQty")?.value||1);
+  recipe.forEach(([n,unitQty],i)=>{
+    const required=unitQty*qty;
     const input=row?.querySelector(`[data-mat-index="${i}"]`);
-    const supplied=Math.min(q,Math.max(0,+input?.value||0));
-    provided+=supplied; missing+=q-supplied; raw+=(prices[n]||0)*(q-supplied);
+    const supplied=Math.min(required,Math.max(0,+input?.value||0));
+    provided+=supplied; missing+=required-supplied; raw+=(prices[n]||0)*(required-supplied);
   });
-  return {raw,price:sellPrice(raw),provided,missing,totalRequired:recipe.reduce((a,x)=>a+x[1],0)};
+  return {raw,price:sellPrice(raw),provided,missing,totalRequired:recipe.reduce((a,x)=>a+x[1]*qty,0)};
 }
-function rowProvisionHtml(recipe){
-  const mats=(recipe||[]).map(([n,q],i)=>`<label class="material-provision"><span>${esc(n)} <span class="resource-note">/ ${q} requis</span></span><input type="number" min="0" max="${q}" value="0" data-mat-index="${i}" aria-label="Quantité fournie de ${esc(n)}"></label>`).join("");
+function rowProvisionHtml(recipe,quantity=1){
+  quantity=Math.max(1,+quantity||1);
+  const mats=(recipe||[]).map(([n,q],i)=>{const required=q*quantity;return `<label class="material-provision"><span>${esc(n)} <span class="resource-note">/ ${required} requis</span></span><input type="number" min="0" max="${required}" value="0" data-mat-index="${i}" aria-label="Quantité fournie de ${esc(n)}"></label>`}).join("");
   return `<label class="provision"><input class="clientProvided" type="checkbox"> Client fournit des ressources</label><span class="service-fee-wrap">Service <input class="service-fee" type="number" min="0" value="0"><span class="resource-note">(facultatif)</span></span><div class="provision-details"><div class="provision-summary">Indiquez les quantités réellement apportées par le client. Le calcul ne facture que les <b>ressources manquantes</b>.</div>${mats||'<span class="resource-note">Cette recette ne possède pas de matériaux.</span>'}</div>`;
+}
+function syncProvisionRequirements(row,recipe,quantity){
+  if(!row||!recipe)return;
+  const qty=Math.max(1,+quantity||1);
+  recipe.forEach(([n,unitQty],i)=>{
+    const required=unitQty*qty;
+    const input=row.querySelector(`[data-mat-index="${i}"]`);
+    const label=input?.closest('.material-provision');
+    if(input){input.max=required;if(+input.value>required)input.value=required;}
+    const note=label?.querySelector('.resource-note');
+    if(note)note.textContent=`/ ${required} requis`;
+  });
 }
 function calcEquipmentRows(){
   let total=0,lines=[];
@@ -568,19 +584,19 @@ function bindProvision(row,calc){
 }
 function addOrderEquipRow(){
   const wrap=document.getElementById("orderEquipRows"),row=document.createElement("div");row.className="row equip-row";
-  row.innerHTML=`<select class="orderEquipSelect">${equipOptions()}</select><input class="orderEquipQty" type="number" min="1" value="1">${rowProvisionHtml(equipment[0]?.[2])}<button type="button" class="action secondary removeEquip">×</button>`;
+  row.innerHTML=`<select class="orderEquipSelect">${equipOptions()}</select><input class="orderEquipQty" type="number" min="1" value="1">${rowProvisionHtml(equipment[0]?.[2],1)}<button type="button" class="action secondary removeEquip">×</button>`;
   wrap.appendChild(row);
   const sel=row.querySelector(".orderEquipSelect");
-  function refreshRecipe(){const e=equipment[+sel.value];const old=row.querySelector(".provision-details");const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(e?.[2]);const oldProv=row.querySelector(".provision");const oldFee=row.querySelector(".service-fee-wrap");const newProv=temp.querySelector(".provision");const newFee=temp.querySelector(".service-fee-wrap");const newDetails=temp.querySelector(".provision-details");oldProv.replaceWith(newProv);oldFee.replaceWith(newFee);old.replaceWith(newDetails);bindProvision(row,calcFull);calcFull()}
-  sel.onchange=refreshRecipe;row.querySelector(".orderEquipQty").oninput=calcFull;row.querySelector(".removeEquip").onclick=()=>{row.remove();calcFull()};bindProvision(row,calcFull);calcFull()
+  function refreshRecipe(){const e=equipment[+sel.value];const qty=Math.max(1,+row.querySelector(".orderEquipQty")?.value||1);const old=row.querySelector(".provision-details");const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(e?.[2],qty);const oldProv=row.querySelector(".provision");const oldFee=row.querySelector(".service-fee-wrap");const newProv=temp.querySelector(".provision");const newFee=temp.querySelector(".service-fee-wrap");const newDetails=temp.querySelector(".provision-details");oldProv.replaceWith(newProv);oldFee.replaceWith(newFee);old.replaceWith(newDetails);bindProvision(row,calcFull);calcFull()}
+  sel.onchange=refreshRecipe;row.querySelector(".orderEquipQty").oninput=()=>{syncProvisionRequirements(row,equipment[+sel.value]?.[2]||null,row.querySelector(".orderEquipQty").value);calcFull()};row.querySelector(".removeEquip").onclick=()=>{row.remove();calcFull()};bindProvision(row,calcFull);calcFull()
 }
 function addOrderGemRow(){
   const wrap=document.getElementById("orderGemRows"),row=document.createElement("div");row.className="row gem-order-row";
-  row.innerHTML=`<select class="orderGemSelect">${gemOptions()}</select><input class="orderGemQty" type="number" min="1" value="1">${rowProvisionHtml(gems[0]?.recipe)}<button type="button" class="action secondary removeGem">×</button>`;
+  row.innerHTML=`<select class="orderGemSelect">${gemOptions()}</select><input class="orderGemQty" type="number" min="1" value="1">${rowProvisionHtml(gems[0]?.recipe,1)}<button type="button" class="action secondary removeGem">×</button>`;
   wrap.appendChild(row);
   const sel=row.querySelector(".orderGemSelect");
-  function refreshRecipe(){const g=gems[+sel.value];const old=row.querySelector(".provision-details");const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(g?.recipe);row.querySelector(".provision").replaceWith(temp.querySelector(".provision"));row.querySelector(".service-fee-wrap").replaceWith(temp.querySelector(".service-fee-wrap"));old.replaceWith(temp.querySelector(".provision-details"));bindProvision(row,calcFull);calcFull()}
-  sel.onchange=refreshRecipe;row.querySelector(".orderGemQty").oninput=calcFull;row.querySelector(".removeGem").onclick=()=>{row.remove();calcFull()};bindProvision(row,calcFull);calcFull()
+  function refreshRecipe(){const g=gems[+sel.value];const qty=Math.max(1,+row.querySelector(".orderGemQty")?.value||1);const old=row.querySelector(".provision-details");const temp=document.createElement("div");temp.innerHTML=rowProvisionHtml(g?.recipe,qty);row.querySelector(".provision").replaceWith(temp.querySelector(".provision"));row.querySelector(".service-fee-wrap").replaceWith(temp.querySelector(".service-fee-wrap"));old.replaceWith(temp.querySelector(".provision-details"));bindProvision(row,calcFull);calcFull()}
+  sel.onchange=refreshRecipe;row.querySelector(".orderGemQty").oninput=()=>{syncProvisionRequirements(row,gems[+sel.value]?.recipe||null,row.querySelector(".orderGemQty").value);calcFull()};row.querySelector(".removeGem").onclick=()=>{row.remove();calcFull()};bindProvision(row,calcFull);calcFull()
 }
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.tab).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})});
 function safeRun(fn){try{fn()}catch(err){console.error("Commerce init:",err)}}
