@@ -390,7 +390,7 @@ h1{
 <p>Réparer un équipement = un service distinct de sa fabrication. Les tarifs sont calculés avec la marge habituelle de 20 %.</p>
 <div class="notice"><b>Ressources fournies par le client :</b> cochez la case sur une ligne si le client apporte des ressources. Vous pourrez ensuite indiquer les quantités fournies ; seules les ressources manquantes seront facturées. Un tarif de service optionnel peut également être ajouté.</div>
 <div class="repair-grid">
-  <article class="repair-tier"><div class="tier-tag">T1</div><h3>Réparation T1</h3><div class="materials"><span class="material">1 × Sable raffiné</span><span class="material">1 × Scories du Pays du Fer</span><span class="material">1 × Résine de forêt</span><span class="material">1 × Pétale du Pays des Cerisiers</span></div><div class="calc-price">8 125 Ryos</div><div class="small-note">Coût ressources : 6 500 Ryos • marge : 1 625 Ryos • 20 % du prix final</div></article>
+  <article class="repair-tier"><div class="tier-tag">T1</div><h3>Réparation T1</h3><div class="materials"><span class="material">1 × Sable raffiné</span><span class="material">1 × Scories du Pays du Fer</span><span class="material">1 × Résine de forêt</span><span class="material">1 × Pétale du Pays des Cerisiers</span></div><div class="calc-price">8 500 Ryos</div><div class="small-note">Coût ressources : 6 800 Ryos • marge : 1 700 Ryos • 20 % du prix final</div></article>
   <article class="repair-tier"><div class="tier-tag">T2</div><h3>Réparation T2</h3><div class="materials"><span class="material">3 × Verre soufflé du désert</span><span class="material">3 × Alliage brut</span><span class="material">3 × Sève des cerisiers</span><span class="material">3 × Bambou traité</span></div><div class="calc-price">61 875 Ryos</div><div class="small-note">Coût ressources : 49 500 Ryos • marge : 12 375 Ryos • 20 % du prix final</div></article>
   <article class="repair-tier"><div class="tier-tag">T3</div><h3>Réparation T3</h3><div class="materials"><span class="material pending">Recette à confirmer</span></div><div class="small-note pending">Les ressources nécessaires seront ajoutées lorsque la recette sera définie.</div></article>
   <article class="repair-tier"><div class="tier-tag">T4</div><h3>Réparation T4</h3><div class="materials"><span class="material pending">Recette à confirmer</span></div><div class="small-note pending">Les ressources nécessaires seront ajoutées lorsque la recette sera définie.</div></article>
@@ -435,9 +435,9 @@ h1{
 <script>
 const MARGIN=0.20;
 const resources={
-"T1 — Communes":[["Pétale du Pays des Cerisiers",1500],["Scories du Pays du Fer",1500],["Résine de forêt",2000],["Fleur de brume",1700],["Poudre écarlate",1700],["Herbe cendrée",1700],["Racine pourpre",1700],["Sable raffiné",2000],["Gemme T1",1000]],
-"T2 — Peu communes":[["Verre soufflé du désert",5000],["Sève des cerisiers",3500],["Alliage brut",3500],["Bambou traité",4500],["Venin de salamandre",3500],["Champignon noir",3500],["Mousse de chakra",5000],["Sève obscure",4000],["Feuille lunaire",4500],["Gemme T2",2000]],
-"T3 — Rares":[["Écorce ancienne",8500],["Noyau compresseur",9000],["Mousse sacrée",30000],["Soie des dunes",30000],["Cristal de flux",18000],["Gemme T3",10000]],
+"T1 — Communes":[["Pétale du Pays des Cerisiers",1300],["Scories du Pays du Fer",1500],["Résine de forêt",2000],["Fleur de brume",1000],["Poudre écarlate",1000],["Herbe cendrée",1000],["Racine pourpre",1000],["Sable raffiné",2000],["Gemme T1",900]],
+"T2 — Peu communes":[["Verre soufflé du désert",5000],["Sève des cerisiers",3500],["Alliage brut",3500],["Bambou traité",4500],["Venin de salamandre",3500],["Champignon noir",3500],["Mousse de chakra",5000],["Sève obscure",3800],["Feuille lunaire",4500],["Gemme T2",1800]],
+"T3 — Rares":[["Écorce ancienne",8500],["Noyau compresseur",9000],["Mousse sacrée",30000],["Soie des dunes",30000],["Cristal de flux",15000],["Gemme T3",10000]],
 "T4 — Très rares":[["Cœur d’arbre millénaire",120000],["Fragment de météorite",120000],["Gemme T4",135000]]
 };
 const prices=Object.fromEntries(Object.values(resources).flat());
