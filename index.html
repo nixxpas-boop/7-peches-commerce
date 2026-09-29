@@ -308,135 +308,6 @@ h1{
 /* V47 — onglet Réparation */
 .repair-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 20px}.repair-tier{border:1px solid #4a252b;background:linear-gradient(180deg,#17171b,#101014);padding:16px;position:relative;transition:.23s}.repair-tier:hover{transform:translateY(-3px);border-color:#8a2735;box-shadow:0 12px 28px rgba(0,0,0,.34),0 0 18px rgba(210,14,38,.09)}.repair-tier h3{margin:0 0 5px;color:#f0dfbf}.repair-row{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(90px,.45fr) minmax(300px,1.5fr) auto;gap:10px;align-items:end;margin-bottom:10px;padding:10px;border:1px solid #3e272d;background:rgba(10,10,13,.55);transition:.2s}.repair-row:hover{transform:translateY(-2px);border-color:#712532;box-shadow:0 8px 20px rgba(0,0,0,.24),0 0 14px rgba(210,14,38,.08)}.repair-row .provision-details{grid-column:1/-1}.repair-row.client-provided .provision-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px}.repair-row.client-provided{border-color:#712532}.repair-price{color:#ff5364!important;font-weight:bold;text-align:center}.repair-status{display:inline-block;margin-top:8px;padding:4px 8px;border:1px solid #4b252c;background:#0d0d10;color:#bfae99;font-size:11px}.repair-labels{grid-template-columns:minmax(180px,.8fr) minmax(90px,.45fr) minmax(300px,1.5fr) auto}.repair-labels span:nth-child(2){text-align:left}
 @media(max-width:760px){.repair-grid{grid-template-columns:1fr}.repair-row,.repair-labels{grid-template-columns:1fr}.repair-labels{display:none}}
-
-/* V54 — Les 7 Péchés : portraits spectraux autour du registre */
-.sin-portraits{
-  position:fixed;
-  inset:0;
-  z-index:4;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity 1.8s ease;
-  overflow:hidden;
-}
-body.septem-ready .sin-portraits{opacity:1}
-.sin-portrait{
-  --accent:#d30e26;
-  --accent2:#ff3048;
-  --x:50%;
-  --y:50%;
-  --delay:0s;
-  position:absolute;
-  left:var(--x);
-  top:var(--y);
-  width:112px;
-  height:152px;
-  transform:translate(-50%,-50%);
-  opacity:.30;
-  filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent) 28%,transparent));
-  animation:sinFloat 7s ease-in-out var(--delay) infinite;
-}
-.sin-portrait:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border:1px solid color-mix(in srgb,var(--accent) 34%,#4a252b);
-  border-radius:58px 58px 18px 18px;
-  background:
-    radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--accent) 18%,transparent),transparent 32%),
-    linear-gradient(180deg,rgba(15,10,13,.78),rgba(4,4,6,.94));
-  box-shadow:inset 0 0 30px rgba(0,0,0,.8),0 0 25px color-mix(in srgb,var(--accent) 10%,transparent);
-}
-.sin-portrait .p-head{
-  position:absolute;
-  left:50%;
-  top:22px;
-  width:47px;
-  height:58px;
-  transform:translateX(-50%);
-  border-radius:48% 48% 43% 43%;
-  background:linear-gradient(135deg,#2a2020,#0c0b0e 72%);
-  border:1px solid color-mix(in srgb,var(--accent) 34%,#453039);
-  box-shadow:0 0 18px color-mix(in srgb,var(--accent) 12%,transparent);
-}
-.sin-portrait .p-head:before{
-  content:"";
-  position:absolute;
-  left:-5px;right:-5px;top:-7px;height:22px;
-  border-radius:55% 55% 25% 25%;
-  background:linear-gradient(135deg,#09080a,#241016 55%,var(--accent));
-  opacity:.92;
-}
-.sin-portrait .p-eyes{
-  position:absolute;
-  left:50%;top:47px;
-  width:31px;height:4px;
-  transform:translateX(-50%);
-  background:linear-gradient(90deg,transparent 0 8%,var(--accent2) 8% 32%,transparent 32% 68%,var(--accent2) 68% 92%,transparent 92%);
-  filter:drop-shadow(0 0 5px var(--accent));
-  opacity:.9;
-}
-.sin-portrait .p-body{
-  position:absolute;
-  left:50%;bottom:13px;
-  width:80px;height:61px;
-  transform:translateX(-50%);
-  border-radius:48px 48px 14px 14px;
-  background:linear-gradient(145deg,#171116,#070709);
-  border:1px solid color-mix(in srgb,var(--accent) 27%,#38242b);
-}
-.sin-portrait .p-mark{
-  position:absolute;
-  left:50%;top:76px;
-  transform:translateX(-50%);
-  color:var(--accent2);
-  font-family:Georgia,serif;
-  font-size:18px;
-  text-shadow:0 0 10px var(--accent);
-  opacity:.8;
-}
-.sin-portrait .p-name{
-  position:absolute;
-  left:50%;bottom:2px;
-  transform:translateX(-50%);
-  color:#d7c5aa;
-  font:700 8px Georgia,"Times New Roman",serif;
-  letter-spacing:1.6px;
-  text-transform:uppercase;
-  white-space:nowrap;
-  text-shadow:0 2px 4px #000;
-  opacity:.72;
-}
-.sin-portrait:nth-child(1){--x:5.2%;--y:24%;--accent:#39c86b;--accent2:#7dff9f;--delay:-1s}
-.sin-portrait:nth-child(2){--x:95%;--y:20%;--accent:#d6a53a;--accent2:#ffe49a;--delay:-4s}
-.sin-portrait:nth-child(3){--x:4.8%;--y:57%;--accent:#5b9be8;--accent2:#a9d1ff;--delay:-2.5s}
-.sin-portrait:nth-child(4){--x:95.2%;--y:54%;--accent:#d30e26;--accent2:#ff5265;--delay:-5s}
-.sin-portrait:nth-child(5){--x:5.5%;--y:82%;--accent:#e1b44e;--accent2:#fff0a8;--delay:-3.5s}
-.sin-portrait:nth-child(6){--x:94.7%;--y:80%;--accent:#a36bea;--accent2:#d8b5ff;--delay:-6s}
-.sin-portrait:nth-child(7){--x:50%;--y:92%;--accent:#d84b9b;--accent2:#ff9bd1;--delay:-7s;transform:translate(-50%,-50%) scale(.86);opacity:.18}
-@keyframes sinFloat{
-  0%,100%{margin-top:0;transform:translate(-50%,-50%)}
-  50%{margin-top:-7px;transform:translate(-50%,-50%) scale(1.018)}
-}
-.sin-portrait:nth-child(7){animation-name:sinFloatBottom}
-@keyframes sinFloatBottom{
-  0%,100%{margin-top:0;transform:translate(-50%,-50%) scale(.86)}
-  50%{margin-top:-5px;transform:translate(-50%,-50%) scale(.88)}
-}
-@media(max-width:1100px){
-  .sin-portrait{width:92px;height:128px;opacity:.20}
-  .sin-portrait:nth-child(1){--x:3%}.sin-portrait:nth-child(2){--x:97%}
-  .sin-portrait:nth-child(3){--x:3%}.sin-portrait:nth-child(4){--x:97%}
-  .sin-portrait:nth-child(5){--x:3%}.sin-portrait:nth-child(6){--x:97%}
-}
-@media(max-width:760px){
-  .sin-portraits{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  .sin-portraits{transition:none}
-  .sin-portrait{animation:none!important}
-}
-
 </style>
 </head>
 <body style="overflow:hidden">
@@ -459,18 +330,6 @@ body.septem-ready .sin-portraits{opacity:1}
 </div>
 <div class="entry-particles" id="entryParticles" aria-hidden="true"></div>
 <div class="mist-field" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="ember-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-
-<!-- V54 — galerie spectrale des 7 Péchés -->
-<div class="sin-portraits" aria-hidden="true">
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">♧</span><span class="p-name">Envie</span></div>
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">◉</span><span class="p-name">Gourmandise</span></div>
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">☾</span><span class="p-name">Paresse</span></div>
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">ϟ</span><span class="p-name">Colère</span></div>
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">◇</span><span class="p-name">Avarice</span></div>
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">♛</span><span class="p-name">Orgueil</span></div>
-  <div class="sin-portrait"><span class="p-head"></span><span class="p-eyes"></span><span class="p-body"></span><span class="p-mark">♆</span><span class="p-name">Luxure</span></div>
-</div>
-
 <div class="shell"><div class="mist" aria-hidden="true"></div><div class="ember-field" aria-hidden="true"><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i><i class="ember"></i></div><div class="parchment">
 <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
 <div class="content">
@@ -851,7 +710,7 @@ if(document.readyState === "loading") document.addEventListener("DOMContentLoade
     screen.classList.add('ignite');
     // Laisser l'impact sonore et visuel respirer avant de faire disparaître l'écran.
     setTimeout(()=>screen.classList.add('exit'),1450);
-    setTimeout(()=>{screen.remove(); document.body.style.overflow=''; document.body.classList.add('septem-ready');},2500);
+    setTimeout(()=>{screen.remove(); document.body.style.overflow='';},2500);
   }
   logo.addEventListener('click',openEntry);
   logo.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openEntry();}});
